@@ -1,6 +1,6 @@
 # Azure Lighthouse - Monitor delegation changes in your managing tenant using a Logic App
 
-This example shows how to use a managed identity in your tenant to monitor delegation changes in order to respond to these events with Low-code, orchestrate more complex workflows or integrate this with your DevOps pipelines.
+This example shows how to use a system assigned managed identity with logic apps, in your tenant to monitor delegation changes in order to respond to these events with Low-code and orchestrate more complex workflows or integrate  with your DevOps pipelines to deploy managed solutions.
 
 [![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fharaldfianbakken%2FAzure-Lighthouse-samples%2Fmaster%2Ftools%2Fmonitor-delegation-changes-logic-app%2Fmonitor-delegation-change.json)
 
@@ -9,6 +9,7 @@ Make sure you have the rights to create a system assigned identity with the acco
 
 ## Steps
  - Click deploy to Azure 
+ - Fill inn the name of the resource group, location and the name you'd like on the logic app
  - Navigate to the logic app & click identity 
 
  ![System assigned identity](images/Lighthouse-app-identity.png)
