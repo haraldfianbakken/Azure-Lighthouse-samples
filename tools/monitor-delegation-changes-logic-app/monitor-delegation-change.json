@@ -1,0 +1,575 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_AutomationLogicApp_name": {
+            "defaultValue": "AutomationLogicApp",
+            "type": "String"
+        }
+    },
+    "variables": {
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_AutomationLogicApp_name')]",
+            "location": "westeurope",
+            "identity": {
+                "principalId": "5e3f6516-aec4-464a-8888-d91b25930224",
+                "tenantId": "20292530-b1ac-401d-be5c-24bc04a19791",
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                    },
+                    "staticResults": {
+                        "HTTP0": {
+                            "status": "Succeeded",
+                            "outputs": {
+                                "headers": {
+                                },
+                                "statusCode": "OK"
+                            }
+                        }
+                    },
+                    "triggers": {
+                        "Recurrence": {
+                            "recurrence": {
+                                "frequency": "Month",
+                                "interval": 1
+                            },
+                            "type": "Recurrence"
+                        }
+                    },
+                    "actions": {
+                        "FetchAllData": {
+                            "actions": {
+                                "Condition": {
+                                    "actions": {
+                                        "Parse_JSON": {
+                                            "runAfter": {
+                                            },
+                                            "type": "ParseJson",
+                                            "inputs": {
+                                                "content": "@body('HTTP')",
+                                                "schema": {
+                                                    "$schema": "http://json-schema.org/draft-04/schema#",
+                                                    "properties": {
+                                                        "nextLink": {
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "items": {
+                                                                "properties": {
+                                                                    "authorization": {
+                                                                        "properties": {
+                                                                            "action": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "scope": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "caller": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "category": {
+                                                                        "properties": {
+                                                                            "localizedValue": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "value": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "channels": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "claims": {
+                                                                        "properties": {
+                                                                            "aio": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "altsecid": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "appid": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "appidacr": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "aud": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "exp": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "groups": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.microsoft.com/claims/authnclassreference": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.microsoft.com/claims/authnmethodsreferences": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.microsoft.com/identity/claims/identityprovider": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.microsoft.com/identity/claims/objectidentifier": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.microsoft.com/identity/claims/scope": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.microsoft.com/identity/claims/tenantid": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "iat": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ipaddr": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "iss": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "name": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "nbf": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "puid": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "rh": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "uti": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "ver": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "wids": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "correlationId": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "description": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "eventDataId": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "eventName": {
+                                                                        "properties": {
+                                                                            "localizedValue": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "value": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "eventTimestamp": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "httpRequest": {
+                                                                        "properties": {
+                                                                            "clientIpAddress": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "clientRequestId": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "method": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "id": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "level": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "operationId": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "operationName": {
+                                                                        "properties": {
+                                                                            "localizedValue": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "value": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "properties": {
+                                                                        "properties": {
+                                                                            "serviceRequestId": {
+                                                                                "type": [
+                                                                                    "string",
+                                                                                    "null"
+                                                                                ]
+                                                                            },
+                                                                            "statusCode": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "resourceId": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "resourceProviderName": {
+                                                                        "properties": {
+                                                                            "localizedValue": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "value": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "resourceType": {
+                                                                        "properties": {
+                                                                            "localizedValue": {
+                                                                                "type": [
+                                                                                    "string",
+                                                                                    "null"
+                                                                                ]
+                                                                            },
+                                                                            "value": {
+                                                                                "type": [
+                                                                                    "string",
+                                                                                    "null"
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "status": {
+                                                                        "properties": {
+                                                                            "localizedValue": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "value": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "subStatus": {
+                                                                        "properties": {
+                                                                            "localizedValue": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "value": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "submissionTimestamp": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "subscriptionId": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "tenantId": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "authorization",
+                                                                    "caller",
+                                                                    "channels",
+                                                                    "claims",
+                                                                    "correlationId",
+                                                                    "description",
+                                                                    "eventDataId",
+                                                                    "eventName",
+                                                                    "category",
+                                                                    "id",
+                                                                    "level",
+                                                                    "resourceProviderName",
+                                                                    "resourceId",
+                                                                    "resourceType",
+                                                                    "operationId",
+                                                                    "operationName",
+                                                                    "status",
+                                                                    "subStatus",
+                                                                    "eventTimestamp",
+                                                                    "submissionTimestamp",
+                                                                    "subscriptionId",
+                                                                    "tenantId"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "HTTP": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "expression": {
+                                        "and": [
+                                            {
+                                                "less": [
+                                                    "@outputs('HTTP')['statusCode']",
+                                                    299
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "type": "If"
+                                },
+                                "HTTP": {
+                                    "runAfter": {
+                                    },
+                                    "type": "Http",
+                                    "inputs": {
+                                        "authentication": {
+                                            "audience": "https://management.azure.com",
+                                            "type": "ManagedServiceIdentity"
+                                        },
+                                        "method": "GET",
+                                        "uri": "@variables('Url')"
+                                    },
+                                    "operationOptions": "SuppressWorkflowHeaders",
+                                    "runtimeConfiguration": {
+                                        "staticResult": {
+                                            "staticResultOptions": "Disabled",
+                                            "name": "HTTP0"
+                                        }
+                                    }
+                                },
+                                "Has_next_link": {
+                                    "actions": {
+                                        "Set_NextUrl": {
+                                            "runAfter": {
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "Url",
+                                                "value": "@string(body('HTTP').nextLink)"
+                                            }
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "Registrations": [
+                                            "Succeeded"
+                                        ],
+                                        "Unregister_actions": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "else": {
+                                        "actions": {
+                                            "Set_variable": {
+                                                "runAfter": {
+                                                },
+                                                "type": "SetVariable",
+                                                "inputs": {
+                                                    "name": "HasMoreResults",
+                                                    "value": false
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "expression": {
+                                        "and": [
+                                            {
+                                                "greater": [
+                                                    "@length(body('HTTP').nextLink)",
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "type": "If"
+                                },
+                                "No_more_results_-_run_if_http.nextLink_has_no_more": {
+                                    "runAfter": {
+                                        "Has_next_link": [
+                                            "Failed",
+                                            "Skipped"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "HasMoreResults",
+                                        "value": false
+                                    }
+                                },
+                                "Register_actions": {
+                                    "runAfter": {
+                                        "Condition": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Query",
+                                    "inputs": {
+                                        "from": "@body('Parse_JSON')?['value']",
+                                        "where": "@and(equals(item()?['operationName'].value, 'Microsoft.Resources/tenants/register/action'), equals(item()?['eventName'].value, 'EndRequest'))"
+                                    }
+                                },
+                                "Registrations": {
+                                    "foreach": "@body('Register_actions')",
+                                    "actions": {
+                                        "Compose_Registration_Json": {
+                                            "runAfter": {
+                                            },
+                                            "type": "Compose",
+                                            "inputs": {
+                                                "customerDelegationStatus": "@{item().status}",
+                                                "customerSubscriptionId": "@{json(item().description).subscriptionId}",
+                                                "customerTenantId": "@{json(item().description).subscriptionTenantId}",
+                                                "delegatedResourceId": "@{json(item().description).delegationResourceId}",
+                                                "eventName": "@{item().eventName.value}",
+                                                "eventTimeStamp": "@{item().eventTimestamp}",
+                                                "operationName": "@{item().operationName.value}"
+                                            }
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "Register_actions": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Foreach"
+                                },
+                                "Unregister_actions": {
+                                    "runAfter": {
+                                        "Condition": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Query",
+                                    "inputs": {
+                                        "from": "@body('Parse_JSON')?['value']",
+                                        "where": "@and(equals(item()?['operationName'].value, 'Microsoft.Resources/tenants/unregister/action'), equals(item()?['eventName'].value, 'EndRequest'))"
+                                    }
+                                }
+                            },
+                            "runAfter": {
+                                "Initialize_variable": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "expression": "@equals(variables('HasMoreResults'), false)",
+                            "limit": {
+                                "count": 60,
+                                "timeout": "PT1H"
+                            },
+                            "type": "Until"
+                        },
+                        "Initialize_HasMoreResults": {
+                            "runAfter": {
+                                "Initialize_LastRunDate": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "HasMoreResults",
+                                        "type": "boolean",
+                                        "value": true
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_LastRunDate": {
+                            "runAfter": {
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "LastRunDate",
+                                        "type": "String",
+                                        "value": "2020-05-25T18:02:55Z"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable": {
+                            "runAfter": {
+                                "Initialize_HasMoreResults": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "Url",
+                                        "type": "string",
+                                        "value": "https://management.azure.com/providers/microsoft.insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '@{variables('LastRunDate')}'"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "outputs": {
+
+                    }
+                },
+                "parameters": {
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "automationAppName": {
+            "type": "string",
+            "value": "[parameters('workflows_AutomationLogicApp_name')]"
+        }
+    }
+}
