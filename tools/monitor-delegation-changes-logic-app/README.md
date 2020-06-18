@@ -2,10 +2,10 @@
 
 This example shows how to use a managed identity in your tenant to monitor delegation changes in order to respond to these events with Low-code, orchestrate more complex workflows or integrate this with your DevOps pipelines.
 
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fharaldfianbakken%2Fazure-lighthouse-examples%2Fmaster%2Ftools%2Fmonitor-delegation-changes-logic-app%2Fmonitor-delegation-change.json)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fharaldfianbakken%2FAzure-Lighthouse-samples%2Fmaster%2Ftools%2Fmonitor-delegation-changes-logic-app%2Fmonitor-delegation-change.json)
 
 ## Pre-requisites
-Make sure you have the rights to create a system assigned identity with the account you are deploying the solution with and privileges to assign the system identity the role 'monitoring reader' on root scope (/).
+Make sure you have the rights to create a system assigned identity with the account you are deploying the solution with and privileges to assign the system identity created with the role 'monitoring reader' on root scope (/) - tenant level.
 
 ## Steps
  - Click deploy to Azure 
